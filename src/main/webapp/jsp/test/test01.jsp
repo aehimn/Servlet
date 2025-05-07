@@ -18,6 +18,8 @@
 		}
 	%>
 	
+	<h2>점수 평균은 <%= average %> 입니다.</h2>
+	
 	<%
 		List<String> scoreList = Arrays.asList(new String[]{"X", "O", "O", "O", "X", "O", "O", "O", "X", "O"});
 		int score = 0;
@@ -27,6 +29,8 @@
 			}
 		}
 	%>
+	
+	<h2>채점 결과는 <%= score %>점 입니다.</h2>
 
 </body>
 </html>
