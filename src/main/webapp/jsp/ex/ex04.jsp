@@ -45,9 +45,9 @@
 		scoreList.add(score1);
 		
 		Map<String, Integer> score2 = new HashMap<>();
-		score1.put("국어", 100);
-		score1.put("수학", 90);
-		score1.put("영어", 70);
+		score2.put("국어", 100);
+		score2.put("수학", 90);
+		score2.put("영어", 70);
 		
 		scoreList.add(score2);
 	%>
@@ -61,16 +61,13 @@
 			</tr>
 		</thead>
 		<tbody>
+			<% for(Map<String, Integer> score : scoreList) { %>
 			<tr>
-				<td>30</td>
-				<td>40</td>
-				<td>55</td>
+				<td><%= score.get("국어") %></td>
+				<td><%= score.get("수학") %></td>
+				<td><%= score.get("영어") %></td>
 			</tr>
-			<tr>
-				<td>45</td>
-				<td>60</td>
-				<td>30</td>
-			</tr>
+			<% } %>
 		</tbody>
 	</table>
 
