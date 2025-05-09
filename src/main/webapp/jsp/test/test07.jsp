@@ -27,8 +27,8 @@
 	    map = new HashMap<String, Object>() {{ put("name", "반올림피자"); put("menu", "피자"); put("point", 4.3); } };
 	    list.add(map);
 	    
-	    String search = request.getParameter("search");
-	    String above4 = request.getParameter("above4");
+	    String search = request.getParameter("search"); // target 키워드로
+	    String above4 = request.getParameter("above4"); // filter 키워드로
 	    
 	%>
 
@@ -44,22 +44,12 @@
 			</thead>
 			<tbody>
 				<% for(Map<String, Object> store : list ) { %>
-				<% if(store.get("menu").equals(search)) { %>
-				<% if(above4 != null) { %>
-				<% if((double)store.get("point") >= 4.0) { %>
+				<% if(store.get("menu").equals(search) && (above4 == null || (double)store.get("point") >= 4.0)) { %>
 				<tr>
 					<td><%= store.get("menu") %></td>
 					<td><%= store.get("name") %></td>
 					<td><%= store.get("point") %></td>
 				</tr>
-				<% } %>
-				<% } else { %>
-				<tr>
-					<td><%= store.get("menu") %></td>
-					<td><%= store.get("name") %></td>
-					<td><%= store.get("point") %></td>
-				</tr>
-				<% } %>
 				<% } %>
 				<% } %>
 			</tbody>

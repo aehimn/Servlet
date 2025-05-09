@@ -11,7 +11,7 @@
 <body>
 
 	<%
-		List<Map<String, Object>> list = new ArrayList<>();
+	    List<Map<String, Object>> list = new ArrayList<>();
 	    Map<String, Object> map = new HashMap<String, Object>() {
 	        { 
 	            put("id", 1000);
@@ -55,29 +55,23 @@
 	        } 
 	    };
 	    list.add(map);
+	    
+	    int id = Integer.parseInt(request.getParameter("id"));
 	%>
 
-	<div class="container">
-		<h1 class="text-center mt-3">책 목록</h1>
+	<% for(Map<String, Object> book : list) { %>
+	<% if(book.get("id").equals(id)) { %>
+	
+	<div class="container d-flex mt-5">
+		<img src=<%= book.get("image") %>>
+		<div class="ml-3">
+			<div class="display-1 font-weight-bold"><%= book.get("title") %></div>
+			<div class="display-2 text-info"><%= book.get("author") %></div>
+			<div class="display-3"><%= book.get("publisher") %></div>
+		</div>
 	</div>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>id</th>
-				<td>표지</td>
-				<td>제목</td>
-			</tr>
-		</thead>
-		<tbody>
-			<% for(Map<String, Object> book : list) { %>
-			<tr>
-				<td><%= book.get("id") %></td>
-				<td><img width="120" src=<%= book.get("image") %>></td>
-				<td class=" display-4"><a href="#"><%= book.get("title") %></a></td>
-			</tr>
-			<% } %>
-		</tbody>
-	</table>
+	<% } %>
+	<% } %>
 
 </body>
 </html>
