@@ -50,9 +50,6 @@
 	    list.add(map);
 	    
 	    String category = request.getParameter("category");
-	    if(category == null) {
-	    	category = "all";
-	    }
 	    
 	%>
 
@@ -61,7 +58,7 @@
 			<h1 class="text-danger">Sk broadband IPTV</h1>
 		</header>
 		<nav style="height: 50px" class="bg-danger d-flex justify-content-around align-items-center">
-			<div><a href="/jsp/test/test09.jsp?category=all" class="text-white">전체</a></div>
+			<div><a href="/jsp/test/test09.jsp" class="text-white">전체</a></div>
 			<div><a href="/jsp/test/test09.jsp?category=terrestrial" class="text-white">지상파</a></div>
 			<div><a href="/jsp/test/test09.jsp?category=drama" class="text-white">드라마</a></div>
 			<div><a href="/jsp/test/test09.jsp?category=entertainment" class="text-white">예능</a></div>
@@ -79,7 +76,7 @@
 				</thead>
 				<tbody>
 					<% for(Map<String, String> item : list) { %>
-					<% if(category.equals("all")
+					<% if(category == null
 							|| (category.equals("terrestrial") && item.get("category").equals("지상파"))
 							|| (category.equals("drama") && item.get("category").equals("드라마"))
 							|| (category.equals("entertainment") && item.get("category").equals("예능"))
