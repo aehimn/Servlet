@@ -38,7 +38,7 @@ public class Ex01Controller extends HttpServlet {
 			Connection connection = DriverManager.getConnection(url, username, password);
 			
 			// 쿼리작성
-			String query = "SELECT * FROM `used_goods`";
+			String query = "SELECT * FROM `used_goods`;";
 			
 			// 쿼리 수행
 			Statement statement = connection.createStatement();
@@ -52,11 +52,23 @@ public class Ex01Controller extends HttpServlet {
 				out.println("제목 : " + title + " 가격 : " + price + " 설명 : " + description);
 			}
 			
-			
-			
-			
-			
 			statement.close();
+			
+			// insert
+			 query = "INSERT `used_goods`\r\n"
+			 		+ "(`sellerId`, `title`, `price`, `description`)\r\n"
+			 		+ "VALUE\r\n"
+			 		+ "(3, '고양이 간식 팝니다', 5000, '저희 고양이가 입맛이 까다로워서 안먹어요!');";
+			
+			 statement = connection.createStatement();
+			 
+			 // INSERT, UPDATE, DELETE
+			 // 실행된 행의 개수
+			 int count = statement.executeUpdate(query);
+			 
+			 out.println("실행 결과 : " + count);
+			 statement.close();
+			 
 			connection.close();
 			
 		} catch (SQLException e) {
